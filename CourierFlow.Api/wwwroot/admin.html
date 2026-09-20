@@ -1,0 +1,902 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Панель адміністратора | CourierFlow</title>
+
+    <meta name="description"
+          content="Панель адміністратора CourierFlow для керування доставками.">
+
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- =====================================================
+             Sidebar
+             ===================================================== -->
+
+        <aside class="sidebar"
+               id="sidebar">
+
+            <div class="sidebar-header">
+
+                <a href="/admin.html"
+                   class="logo"
+                   aria-label="CourierFlow">
+
+                    <span class="logo-icon">
+                        <svg viewBox="0 0 24 24"
+                             aria-hidden="true">
+                            <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"></path>
+                            <path d="M3 7.5 12 12l9-4.5"></path>
+                            <path d="M12 12v9"></path>
+                        </svg>
+                    </span>
+
+                    <span class="logo-text">
+                        CourierFlow
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <nav class="sidebar-nav"
+                 aria-label="Головна навігація">
+
+                <p class="nav-label">
+                    МЕНЮ
+                </p>
+
+                <button type="button"
+                        class="nav-item active"
+                        id="ordersNavigation">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+                        <rect x="4"
+                              y="4"
+                              width="6"
+                              height="6"
+                              rx="1"></rect>
+                        <rect x="14"
+                              y="4"
+                              width="6"
+                              height="6"
+                              rx="1"></rect>
+                        <rect x="4"
+                              y="14"
+                              width="6"
+                              height="6"
+                              rx="1"></rect>
+                        <rect x="14"
+                              y="14"
+                              width="6"
+                              height="6"
+                              rx="1"></rect>
+                    </svg>
+
+                    <span>
+                        Усі замовлення
+                    </span>
+
+                </button>
+
+
+                <button type="button"
+                        class="nav-item"
+                        id="couriersNavigation">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+                        <circle cx="9"
+                                cy="8"
+                                r="3"></circle>
+                        <path d="M3.5 19c.5-3.5 2.5-5.5 5.5-5.5s5 2 5.5 5.5"></path>
+                        <path d="M17 8h4"></path>
+                        <path d="M19 6v4"></path>
+                    </svg>
+
+                    <span>
+                        Кур'єри
+                    </span>
+
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="sidebar-user">
+
+                    <div class="sidebar-avatar"
+                         id="sidebarAvatar">
+                        A
+                    </div>
+
+                    <div class="sidebar-user-info">
+
+                        <strong id="sidebarUserName">
+                            Адміністратор
+                        </strong>
+
+                        <span>
+                            Admin
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button type="button"
+                        class="logout-button"
+                        id="logoutButton">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+                        <path d="M10 5H5v14h5"></path>
+                        <path d="M14 8l4 4-4 4"></path>
+                        <path d="M18 12H9"></path>
+                    </svg>
+
+                    <span>
+                        Вийти
+                    </span>
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             Main
+             ===================================================== -->
+
+        <div class="main-wrapper">
+
+            <!-- Topbar -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button type="button"
+                            class="mobile-menu-button"
+                            id="mobileMenuButton"
+                            aria-label="Відкрити меню">
+
+                        <svg viewBox="0 0 24 24"
+                             aria-hidden="true">
+                            <path d="M4 7h16"></path>
+                            <path d="M4 12h16"></path>
+                            <path d="M4 17h16"></path>
+                        </svg>
+
+                    </button>
+
+                    <div>
+
+                        <p class="topbar-label">
+                            ПАНЕЛЬ АДМІНІСТРАТОРА
+                        </p>
+
+                        <h1>
+                            Керування доставками
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-user">
+
+                    <div class="topbar-user-text">
+
+                        <strong id="topbarUserName">
+                            CourierFlow Admin
+                        </strong>
+
+                        <span>
+                            Адміністратор системи
+                        </span>
+
+                    </div>
+
+                    <div class="topbar-avatar"
+                         id="topbarAvatar">
+                        A
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Content -->
+
+            <main class="content">
+
+                <!-- Welcome -->
+
+                <section class="welcome-section">
+
+                    <div>
+
+                        <p class="section-label">
+                            ОГЛЯД
+                        </p>
+
+                        <h2 id="welcomeTitle">
+                            Панель керування
+                        </h2>
+
+                        <p>
+                            Контролюйте замовлення,
+                            призначайте кур'єрів та
+                            відстежуйте виконання доставок.
+                        </p>
+
+                    </div>
+
+
+                    <div class="welcome-actions">
+
+                        <span class="current-date"
+                              id="currentDate">
+                        </span>
+
+                        <button type="button"
+                                class="refresh-button"
+                                id="refreshButton">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M20 11a8 8 0 1 0-2.3 5.7"></path>
+                                <path d="M20 5v6h-6"></path>
+                            </svg>
+
+                            Оновити
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     Statistics
+                     ================================================= -->
+
+                <section class="stats-grid"
+                         aria-label="Статистика замовлень">
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon stat-icon-new">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <rect x="5"
+                                      y="6"
+                                      width="14"
+                                      height="14"
+                                      rx="2"></rect>
+                                <path d="M9 3v5"></path>
+                                <path d="M15 3v5"></path>
+                                <path d="M8 12h8"></path>
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Нові
+                            </span>
+
+                            <strong id="newOrdersCount">
+                                0
+                            </strong>
+
+                            <small>
+                                Очікують призначення
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon stat-icon-active">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M3 17h13"></path>
+                                <path d="M5 17V8h9l4 4v5"></path>
+                                <circle cx="7"
+                                        cy="18"
+                                        r="2"></circle>
+                                <circle cx="17"
+                                        cy="18"
+                                        r="2"></circle>
+                                <path d="M14 9v4h4"></path>
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Активні
+                            </span>
+
+                            <strong id="activeOrdersCount">
+                                0
+                            </strong>
+
+                            <small>
+                                Виконуються зараз
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon stat-icon-delivered">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <circle cx="12"
+                                        cy="12"
+                                        r="9"></circle>
+                                <path d="m8 12 2.5 2.5L16 9"></path>
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Доставлено
+                            </span>
+
+                            <strong id="deliveredOrdersCount">
+                                0
+                            </strong>
+
+                            <small>
+                                Завершені доставки
+                            </small>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="stat-card">
+
+                        <div class="stat-icon stat-icon-total">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <rect x="5"
+                                      y="3"
+                                      width="14"
+                                      height="18"
+                                      rx="2"></rect>
+                                <path d="M9 8h6"></path>
+                                <path d="M9 12h6"></path>
+                                <path d="M9 16h4"></path>
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Усього
+                            </span>
+
+                            <strong id="totalOrdersCount">
+                                0
+                            </strong>
+
+                            <small>
+                                Усі замовлення
+                            </small>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     Orders
+                     ================================================= -->
+
+                <section class="orders-panel"
+                         id="ordersSection">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Замовлення
+                            </h3>
+
+                            <p>
+                                Переглядайте та керуйте
+                                всіма доставками CourierFlow.
+                            </p>
+
+                        </div>
+
+
+                        <div class="panel-actions">
+
+                            <div class="search-wrapper">
+
+                                <svg viewBox="0 0 24 24"
+                                     aria-hidden="true">
+                                    <circle cx="11"
+                                            cy="11"
+                                            r="7"></circle>
+                                    <path d="m16 16 4 4"></path>
+                                </svg>
+
+                                <input type="search"
+                                       id="orderSearch"
+                                       placeholder="Пошук замовлення..."
+                                       aria-label="Пошук замовлення">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Filters -->
+
+                    <div class="filters"
+                         id="orderFilters">
+
+                        <button type="button"
+                                class="filter-button active"
+                                data-filter="all">
+                            Усі
+                        </button>
+
+                        <button type="button"
+                                class="filter-button"
+                                data-filter="new">
+                            Нові
+                        </button>
+
+                        <button type="button"
+                                class="filter-button"
+                                data-filter="active">
+                            Активні
+                        </button>
+
+                        <button type="button"
+                                class="filter-button"
+                                data-filter="delivered">
+                            Завершені
+                        </button>
+
+                        <button type="button"
+                                class="filter-button"
+                                data-filter="cancelled">
+                            Скасовані
+                        </button>
+
+                    </div>
+
+
+                    <!-- Loading -->
+
+                    <div class="state-container"
+                         id="ordersLoadingState">
+
+                        <div class="spinner"></div>
+
+                        <strong>
+                            Завантаження замовлень...
+                        </strong>
+
+                        <p>
+                            Отримуємо актуальні дані.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Error -->
+
+                    <div class="state-container hidden"
+                         id="ordersErrorState">
+
+                        <div class="state-icon error-icon">
+                            !
+                        </div>
+
+                        <strong>
+                            Не вдалося завантажити замовлення
+                        </strong>
+
+                        <p id="ordersErrorMessage">
+                            Спробуйте оновити сторінку.
+                        </p>
+
+                        <button type="button"
+                                class="secondary-button"
+                                id="retryOrdersButton">
+                            Спробувати ще раз
+                        </button>
+
+                    </div>
+
+
+                    <!-- Empty -->
+
+                    <div class="state-container hidden"
+                         id="ordersEmptyState">
+
+                        <div class="state-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <rect x="5"
+                                      y="6"
+                                      width="14"
+                                      height="14"
+                                      rx="2"></rect>
+                                <path d="M9 3v5"></path>
+                                <path d="M15 3v5"></path>
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Замовлень не знайдено
+                        </strong>
+
+                        <p>
+                            Для вибраного фільтра
+                            немає замовлень.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Orders table -->
+
+                    <div class="orders-table-wrapper hidden"
+                         id="ordersTableWrapper">
+
+                        <table class="orders-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Замовлення</th>
+                                    <th>Клієнт</th>
+                                    <th>Маршрут</th>
+                                    <th>Кур'єр</th>
+                                    <th>Статус</th>
+                                    <th>Створено</th>
+                                    <th aria-label="Дії"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="ordersTableBody">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     Couriers
+                     ================================================= -->
+
+                <section class="couriers-panel hidden"
+                         id="couriersSection">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Кур'єри
+                            </h3>
+
+                            <p>
+                                Переглядайте кур'єрів,
+                                зареєстрованих у CourierFlow.
+                            </p>
+
+                        </div>
+
+                        <button type="button"
+                                class="refresh-button"
+                                id="refreshCouriersButton">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <path d="M20 11a8 8 0 1 0-2.3 5.7"></path>
+                                <path d="M20 5v6h-6"></path>
+                            </svg>
+
+                            Оновити
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="state-container"
+                         id="couriersLoadingState">
+
+                        <div class="spinner"></div>
+
+                        <strong>
+                            Завантаження кур'єрів...
+                        </strong>
+
+                    </div>
+
+
+                    <div class="state-container hidden"
+                         id="couriersEmptyState">
+
+                        <div class="state-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 aria-hidden="true">
+                                <circle cx="9"
+                                        cy="8"
+                                        r="3"></circle>
+                                <path d="M3.5 19c.5-3.5 2.5-5.5 5.5-5.5s5 2 5.5 5.5"></path>
+                            </svg>
+
+                        </div>
+
+                        <strong>
+                            Кур'єрів немає
+                        </strong>
+
+                        <p>
+                            У системі ще немає
+                            зареєстрованих кур'єрів.
+                        </p>
+
+                    </div>
+
+
+                    <div class="couriers-grid hidden"
+                         id="couriersGrid">
+                    </div>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         Mobile overlay
+         ========================================================= -->
+
+    <div class="sidebar-overlay"
+         id="sidebarOverlay">
+    </div>
+
+
+    <!-- =========================================================
+         Order details modal
+         ========================================================= -->
+
+    <div class="modal-backdrop hidden"
+         id="orderDetailsModal">
+
+        <div class="modal"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="orderDetailsTitle">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="modal-label">
+                        ДЕТАЛІ ЗАМОВЛЕННЯ
+                    </p>
+
+                    <h3 id="orderDetailsTitle">
+                        Замовлення
+                    </h3>
+
+                </div>
+
+                <button type="button"
+                        class="modal-close"
+                        data-close-modal="orderDetailsModal"
+                        aria-label="Закрити">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+                        <path d="M6 6l12 12"></path>
+                        <path d="M18 6 6 18"></path>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <div class="modal-body"
+                 id="orderDetailsBody">
+            </div>
+
+
+            <div class="modal-footer"
+                 id="orderDetailsFooter">
+
+                <button type="button"
+                        class="secondary-button"
+                        data-close-modal="orderDetailsModal">
+                    Закрити
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         Assign courier modal
+         ========================================================= -->
+
+    <div class="modal-backdrop hidden"
+         id="assignCourierModal">
+
+        <div class="modal modal-small"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="assignCourierTitle">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="modal-label">
+                        ПРИЗНАЧЕННЯ КУР'ЄРА
+                    </p>
+
+                    <h3 id="assignCourierTitle">
+                        Оберіть кур'єра
+                    </h3>
+
+                </div>
+
+                <button type="button"
+                        class="modal-close"
+                        data-close-modal="assignCourierModal"
+                        aria-label="Закрити">
+
+                    <svg viewBox="0 0 24 24"
+                         aria-hidden="true">
+                        <path d="M6 6l12 12"></path>
+                        <path d="M18 6 6 18"></path>
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <p class="assign-description"
+                   id="assignDescription">
+                    Виберіть кур'єра для виконання замовлення.
+                </p>
+
+
+                <div class="courier-options"
+                     id="courierOptions">
+                </div>
+
+
+                <div class="modal-alert hidden"
+                     id="assignCourierAlert"
+                     role="alert">
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="secondary-button"
+                        data-close-modal="assignCourierModal">
+                    Скасувати
+                </button>
+
+                <button type="button"
+                        class="primary-button"
+                        id="confirmAssignButton"
+                        disabled>
+
+                    Призначити кур'єра
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         Toast
+         ========================================================= -->
+
+    <div class="toast"
+         id="toast"
+         role="status"
+         aria-live="polite">
+
+        <div class="toast-icon">
+            ✓
+        </div>
+
+        <div>
+            <strong id="toastTitle">
+                Готово
+            </strong>
+
+            <p id="toastMessage">
+            </p>
+        </div>
+
+    </div>
+
+
+    <script src="/js/admin.js"></script>
+
+</body>
+</html>
